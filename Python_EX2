@@ -1,0 +1,239 @@
+# Python Ex2
+# Submitted by: Shmuel Kaufmann, mob 054-2328635
+# Submitted on 14/4/2023
+
+# 1)	Create a list with your identification information.
+#       For example my lists length will be 4. If I will reach the value of the list on index 0, list[0]
+#       I will receive the “Alex”. Run with for loop over the list and print its content.
+# =====================================================================================
+def PrintList(list):
+
+    print(len(list))
+    for i in range(0,len(list)):
+        print(f"Item {i} is {list[i]}")
+
+PrintList(['Name: Shmuel','Surname: Kaufmann', '5G mobile: No','5G dongle: No'])
+
+# 2)	Create a program that receives two lists of the same length with integers as values,
+#       if the lists are not of the same length the program must return the relevant error.
+#       The program will create a new list that will contain the largest value between the two lists
+#       at a specific index.
+#       Example:
+#       Input of two lists:
+#       lst1 = [1,2,3,4,5]
+#       lst2 = [5,4,3,2,1]
+#       output:
+#       [5, 4, 3, 4, 5]
+#       In the end of the program you must print the new list.
+# =====================================================================================
+def strMaxVals(list1, list2):
+
+    if list1 == "" or list2 == "":
+        return "ERR: Empty list"
+
+    if len(list1) != len(list2):
+        return "ERR: 2x given lists not of the same lenght"
+
+    output_list = []
+
+    for i in range(0,len(list1)):
+
+        if int(list1[i]) > int(list2[i]):
+            output_list.append(list1[i])
+        else:
+            output_list.append(list2[i])
+
+    return output_list
+
+print(strMaxVals([1,2,3,4,5],[5,4,3,2,1]))
+
+# 3)	Create a python program that will count the number of appearances of odd and even values in a list.
+#       In case that the program encounters a string use break statement and return a print that says,
+#       “It’s a string!!!” and nullify the values of odd and even numbers counters.
+#       Example:
+#       list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+#       Expected Output :
+#       Number of even numbers : 5
+#       Number of odd numbers : 4
+#       list = [1, 2, 3, 4, “Oops”, 6, 7, 8, 9]
+#       Expected Output :
+#       “It’s a string!!!”
+# =====================================================================================
+def AppearanceCount(str):
+
+    if str == []:
+        return "Input list is empty !"
+
+    item = []
+    odd_count = 0
+    even_count = 0
+
+    for item in str:
+        if isinstance(item, (int, float)):
+            if int(item) % 2 == 0:
+                even_count += 1
+            else:
+                odd_count += 1
+        else:
+            return "It’s a string!!!"
+
+    return f"Number of even numbers : {even_count}\nNumber of odd numbers : {odd_count}\n"
+
+print(AppearanceCount([1, 2, 3, 4, 5, 6, 7, 8, 9]))
+
+# 4)	Build a function that will receive a list with integer values as its input.
+#       The function will calculate the sum of the integers in the list and will return the sum result.
+# =====================================================================================
+def AppearanceSum(list):
+
+    if list == []:
+        return "Input list is empty !"
+
+    item = []
+    items_sum = 0
+
+    for item in list:
+        if isinstance(item, (int)):
+            items_sum += int(item)
+        else:
+            return "List includes a string!!!"
+
+    return items_sum
+
+print(f"Sum of all items on the list: {AppearanceSum([1,2,3])}")
+
+# 5)	Build a function that will receive a list with integer values as its input.
+#       The function will multiply all values in the list and return the result.
+# =====================================================================================
+def AppearanceMultiply(list):
+
+    if list == []:
+        return "Input list is empty !"
+
+    item = []
+    items_multiply = 0
+
+    for item in list:
+        if isinstance(item, (int)):
+            if items_multiply == 0:
+                items_multiply = int(item)
+            else:
+                items_multiply *= int(item)
+        else:
+            return "List includes a string!!!"
+
+    return items_multiply
+
+print(f"Multiplication result of all items on the list: {AppearanceMultiply([1,2,3])}")
+
+# 6)	Build a function that will receive a list with integer values as its input.
+#       The function will find the minimal value in the list and return this value.
+# =====================================================================================
+def MinVal(list):
+
+    if list == []:
+        return "Input list is empty !"
+
+    all_numeric = all(isinstance(item, (int, float)) for item in list)
+
+    if all_numeric:
+        return min(list)
+    else:
+        return "List includes non-numeric items !"
+
+print(f"Minimal value among the list items: {MinVal([9,2,3])}")
+
+# 7)	Build a Python function that accepts a string and calculate the number of upper case letters
+#       and lower case letters.
+#       Sample String: ‘Alex Kuznetsov’
+#       Expected Output:
+#       No. of Upper case characters: 2
+#       No. of Lower case Characters: 11
+# =====================================================================================
+def strUpLowCalc(str):
+
+    if str == "":
+        return "Input string is empty !"
+
+    upper_count = 0
+    lower_count = 0
+
+    for char in str:
+        if char.isupper():
+            upper_count += 1
+        if char.islower():
+            lower_count += 1
+
+    return f"No. of Upper case characters: {upper_count}\nNo. of Lower case Characters: {lower_count}"
+
+print(strUpLowCalc(""))
+
+########################
+# Challenges
+########################
+
+# 8)	Build a Python function that takes a list and returns a new list with unique elements of the first list.
+#       Example:
+#       •	Input list : [1,2,3,3,3,3,4,5]
+#       •	Output list : [1, 2, 3, 4, 5]
+# =====================================================================================
+def findUniqList(list):
+
+    if list == "":
+        return "Input list is empty !"
+
+    output_list = []
+
+    for i in range(0, len(list)):
+        if list[i] not in output_list:
+            output_list.append(list[i])
+
+    return(output_list)
+
+print(findUniqList([1,2,2,3,3,3,3,4,5,5,6]))
+
+# 9)	Write a Python program to construct the following pattern, using a nested loop.
+#
+# 	    1
+# 	    12
+# 	    123
+# 	    1234
+# 	    12345
+# 	    123456
+# 	    1234567
+# 	    12345678
+# =====================================================================================
+
+for i in range(1,10):
+    for j in range(1,i):
+        print(j, end = "")
+    print("\n")
+
+# 10)	Write a Python program to print the following patterns:
+#
+#       ****
+#       *
+#       *
+#        ***
+#           *
+#           *
+#       ****
+# =====================================================================================
+
+# List includes a pair of information: [no. of spaces,no. of *,no. of spaces,no. of *,....]
+# The list provides means to print any desired digit ( in this example: five )
+digit_five = [0,4,0,1,0,1,1,3,4,1,4,1,0,4]
+
+i = 0
+print(digit_five[i:i+2])
+
+while i <= len(digit_five):
+    for space in range(0,digit_five[i]):
+        print(" ",end = "")
+
+    for astrix in range(0,digit_five[i+1]):
+        print("*",end = "")
+
+    i += 2
+    print("\n")
+

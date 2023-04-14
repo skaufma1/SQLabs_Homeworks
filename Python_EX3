@@ -1,0 +1,201 @@
+# Python Ex3
+# Submitted by: Shmuel Kaufmann, mob 054-2328635
+# Submitted on 14/4/2023
+
+# 1)	Create a dictionary that will include your identification information.
+#       Use relevant keys for each field.Use the tuple key for relevant declarations.
+#       Example:
+#       {(name, Last_name):’Alex Kuznetsov’, ‘age’:27, ‘phone number’: 0527389001}
+# =====================================================================================
+identification_info = {
+    ('name', 'Last_name'): 'Shmuel Kaufmann',
+    'age': 42,
+    'phone number': '0542328635',
+    'hobbies':{'reading','sports in the country club', 'bicycle riding','listening to music','quality time with my kids'}
+}
+
+# Accessing the values in the dictionary
+name = identification_info[('name', 'Last_name')]
+age = identification_info['age']
+phone_number = identification_info['phone number']
+hobbies = list(identification_info['hobbies'])
+
+# Printing the identification information
+print('Name:', name)
+print('Age:', age)
+print('Phone Number:', phone_number)
+for hobby in hobbies:
+    print('Hobbies:', hobby)
+
+# 2)    Build a function that will receive a list as an input, the function will replace the fifth index
+#       character with the character ‘@’ if the fifth index doesn’t exist in the list please return
+#       a relevant exception. If there is no exception please return the updated list.
+# =====================================================================================
+def fifthCharReplace(list):
+
+    if len(list) < 5:
+        raise ValueError("list is too short. List must have at least 5 elements on it")
+
+    list[4] = '@'
+    return list
+
+try:
+    print(f"List is: {fifthCharReplace([1,2,3,4,5])}")
+except ValueError as e:
+    print("Error:", e)
+
+# 3)    Build a function that will receive a list as an input, the function will replace
+#       the fifth index character with the character ‘@’ if the fifth index doesn’t exist
+#       in the list please return a relevant assertion.
+#       If there is no assertion please return the updated list.
+# =====================================================================================
+def fifthCharReplace(list):
+
+    if len(list) < 5:
+        return "Error: list is too short"
+
+    list[4] = '@'
+    return list
+
+print(f"List is: {fifthCharReplace([1,2,3,4,5,6])}")
+
+# 4)	Build a function that will receive a dictionary a new key and a new key value.
+#       The function will add the new key value to the dictionary and will return the updated dictionary.
+# =====================================================================================
+def addToDict(dict,new_key,new_val):
+    dict[new_key]=new_val
+
+    return dict
+
+print(f"New dictionary: {addToDict({'A':'B','C':'D'},'E','F')}")
+
+# 5)    Write a Python script to generate and print a dictionary that contains a number
+#       (between 1 and n) in the form (x, x+3).
+#       Sample Dictionary ( n = 5) :
+#       Expected Output : {1: 4, 2: 5, 3: 6, 4: 7, 5: 8}
+# =====================================================================================
+def genDict(n):
+
+    dict = {}
+
+    for i in range(1,n+1):
+        dict[i] = i+3
+
+    return dict
+
+print(f"Generated dictionary: {genDict(5)}")
+
+#6)     Write a Python script to concatenate following dictionaries to create a new one.
+#       Sample Dictionary:
+#       dic1= {1:10, 2:20}
+#       dic2= {3:30, 4:40}
+#       dic3= {5:50, 6:60}
+#       Expected Result : {1: 10, 2: 20, 3: 30, 4: 40, 5: 50, 6: 60}
+# =====================================================================================
+dic1= {1:10, 2:20}
+dic2= {3:30, 4:40}
+dic3= {5:50, 6:60}
+out_dict = {}
+
+# Version 1:
+out_dict.update(dic1)
+out_dict.update(dic2)
+out_dict.update(dic3)
+
+# Version 2:
+# for key,value in dic1.items():
+#     out_dict[key] = value
+# for key,value in dic2.items():
+#     out_dict[key] = value
+# for key,value in dic3.items():
+#     out_dict[key] = value
+
+print(out_dict)
+
+# 7)    Build a function that will count appearances of each character in the string and will
+#       return a dictionary with string characters as keys and the frequency of each character as key value.
+#       Example:
+#       Input string : 'HANNA’
+#       Expected output: {‘H’: 1, ‘A’: 2, ‘N’: 2}
+# =====================================================================================
+def charCountDict(str):
+
+    char_count_dict = {}
+
+    for char in str:
+        if char not in char_count_dict:
+            char_count_dict[char] = 1
+        else:
+            char_count_dict[char] += 1
+
+    return char_count_dict
+
+print(f"Chars count dictionary: {charCountDict('HANNA')}")
+
+# 8)	Write a Python program to combine two dictionary adding values for common keys.
+#       d1 = {'a': 100, 'b': 200, 'c':300}
+#       d2 = {'a': 300, 'b': 200, 'd':400}
+#       Sample output: Counter({'a': 400, 'b': 400, 'd': 400, 'c': 300})
+# =====================================================================================
+def combineDict(dic1, dic2):
+
+    out_dict = {}
+    out_dict.update(dic1)
+
+    for key,value in dic2.items():
+        if key not in dic1:
+            out_dict[key] = value
+        else:
+            out_dict[key] += value
+
+    return out_dict
+
+print(f"Combines dictionaries: {combineDict({'A':100, 'B':200, 'C':50},{'A':300, 'C':400})}")
+
+########################
+# Challenges
+########################
+
+# 9)	Build a Python function to calculate the factorial of a number (a positive integer).
+#       The function accepts the number as an argument. Please use recursion.
+#       In case that your input is negative integer please return an assertion.
+# =====================================================================================
+def factorialCalc(n):
+
+    if n <= 0:
+        return "ERROR in input number for factorial calc"
+
+    if n == 1:
+        return 1
+    else:
+        return n * factorialCalc(n-1)
+
+print(f"Factorial result: {factorialCalc(5)}")
+
+# 10)	Create a recursive function to calculate the sum of the positive integers
+#       of n+ (n-1) + (n-3)... (Until n-x <= 0).
+#       The n value is the function input the summary result is the output of the function.
+# =====================================================================================
+def sumAllPositiveInts(n):
+
+    if n == 0:
+        return 0
+    else:
+        return n + sumAllPositiveInts(n-1)
+
+print(f"Total sum = {sumAllPositiveInts(6)}")
+
+# 11)   Create a recursive function to calculate the value of 'a' to the power of 'b'.
+#       Example: power(3, 2) means we need to calculate the result of 3**2 = 9
+# =====================================================================================
+def powerCalc(a,b):
+
+    if b == 1:
+        return a
+    else:
+        return a * powerCalc(a, b-1)
+
+print(f"Result of the power calc: {powerCalc(3,3)}")
+
+
+
